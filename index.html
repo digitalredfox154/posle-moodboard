@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ПОСЛЕ — Мудборд</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:      #FFFFFF;
+      --off-white:  #F7F5F2;
+      --milk:       #F0EDE8;
+      --black:      #0E0E0E;
+      --charcoal:   #1A1A1A;
+      --mint:       #A8C5B5;
+      --mint-light: #C8DDD4;
+      --mint-pale:  #E8F0EC;
+      --stone:      #D4CFC8;
+      --stone-mid:  #B8B2AA;
+      --text-main:  #0E0E0E;
+      --text-muted: #6B6560;
+      --text-light: #9E9890;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text-main);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--milk);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 100px 56px;
+    }
+    section:first-of-type { padding-top: 140px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 56px;
+    }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--mint);
+      margin-bottom: 56px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+      background: var(--white);
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 64px 80px 56px;
+      background: var(--white);
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 9vw, 120px);
+      font-weight: 300;
+      line-height: 0.92;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 36px;
+    }
+    .hero-subtitle {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 380px;
+      margin-bottom: 52px;
+      letter-spacing: 0.02em;
+    }
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .hero-meta span {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(255,255,255,0.08) 0%, transparent 30%);
+    }
+
+    /* ── PALETTE ── */
+    .palette-section {
+      background: var(--off-white);
+    }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 16px;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .swatch-color {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 4px;
+      position: relative;
+      transition: transform 0.25s ease;
+    }
+    .swatch-color:hover { transform: scale(1.04); }
+    .swatch-color.has-border { border: 1px solid var(--stone); }
+    .swatch-role {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+    .swatch-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.2;
+    }
+    .swatch-hex {
+      font-size: 11px;
+      color: var(--text-light);
+      font-family: 'Inter', monospace;
+      letter-spacing: 0.06em;
+    }
+    .swatch-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .type-block {
+      border-top: 1px solid var(--milk);
+      padding-top: 32px;
+    }
+    .type-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 20px;
+    }
+    .type-specimen-xl {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--black);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .type-specimen-lg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .type-specimen-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .type-specimen-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .type-specimen-caption {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .type-info {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--milk);
+    }
+    .type-info-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .type-info-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── PHOTO STYLE ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 12px;
+    }
+    .photo-item {
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+      background: var(--milk);
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .photo-item:hover img { transform: scale(1.03); }
+    .photo-item.col-5 { grid-column: span 5; }
+    .photo-item.col-4 { grid-column: span 4; }
+    .photo-item.col-3 { grid-column: span 3; }
+    .photo-item.col-7 { grid-column: span 7; }
+    .photo-item.col-6 { grid-column: span 6; }
+    .photo-item.tall { aspect-ratio: 3/4; }
+    .photo-item.wide { aspect-ratio: 16/9; }
+    .photo-item.square { aspect-ratio: 1; }
+    .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 18px;
+      background: linear-gradient(to top, rgba(14,14,14,0.55) 0%, transparent 100%);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+
+    /* ── TEXTURES ── */
+    .texture-section { background: var(--off-white); }
+    .texture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .texture-item {
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .texture-item img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .texture-label {
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .texture-sublabel {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 300;
+      margin-top: 3px;
+    }
+
+    /* ── UI BLOCKS ── */
+    .ui-section { background: var(--white); }
+    .ui-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .ui-block {
+      border: 1px solid var(--milk);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .ui-block-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--milk);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ui-block-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .ui-block-tag {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mint);
+      background: var(--mint-pale);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .ui-block-body { padding: 32px 24px; }
+
+    /* HERO BLOCK */
+    .ui-hero-preview {
+      background: var(--black);
+      padding: 48px 40px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ui-hero-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .ui-hero-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .ui-hero-nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .ui-hero-nav-links span {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .ui-hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .ui-hero-sub {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-top: 16px;
+    }
+
+    /* BEFORE/AFTER BLOCK */
+    .ui-ba-preview {
+      background: var(--off-white);
+      padding: 40px;
+      min-height: 280px;
+    }
+    .ui-ba-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 20px;
+    }
+    .ui-ba-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 28px;
+      line-height: 1.1;
+    }
+    .ui-ba-split {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      border: 1px solid var(--stone);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .ui-ba-side {
+      padding: 20px;
+      background: var(--white);
+    }
+    .ui-ba-side.after { background: var(--mint-pale); }
+    .ui-ba-side-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .ui-ba-side.after .ui-ba-side-label { color: var(--mint); }
+    .ui-ba-divider-line { background: var(--stone); }
+    .ui-ba-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--milk);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ui-ba-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    /* WHO AM I BLOCK */
+    .ui-who-preview {
+      background: var(--white);
+      padding: 40px;
+      min-height: 280px;
+      border-top: 3px solid var(--mint-light);
+    }
+    .ui-who-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .ui-who-photo {
+      aspect-ratio: 3/4;
+      background: var(--milk);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .ui-who-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ui-who-content {}
+    .ui-who-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .ui-who-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .ui-who-text {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    /* BOOKING BLOCK */
+    .ui-book-preview {
+      background: var(--black);
+      padding: 48px 40px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .ui-book-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 20px;
+    }
+    .ui-book-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .ui-book-sub {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 36px;
+      letter-spacing: 0.06em;
+    }
+    .ui-book-btn {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid var(--mint);
+      color: var(--mint);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: transparent;
+    }
+    .ui-book-btn:hover {
+      background: var(--mint);
+      color: var(--black);
+    }
+
+    /* CONTACTS BLOCK */
+    .ui-contacts-preview {
+      background: var(--off-white);
+      padding: 40px;
+      min-height: 280px;
+    }
+    .ui-contacts-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 20px;
+    }
+    .ui-contacts-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 28px;
+    }
+    .ui-contacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ui-contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .ui-contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--stone);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ui-contact-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--mint);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ui-contact-text {}
+    .ui-contact-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+    .ui-contact-value {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+    }
+    .ui-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .ui-social-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border: 1px solid var(--stone);
+      border-radius: 24px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ui-social-btn:hover {
+      border-color: var(--mint);
+      color: var(--black);
+    }
+    .ui-social-btn svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--mint);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── BUTTONS ── */
+    .buttons-section { background: var(--white); }
+    .buttons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      padding: 14px 36px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 40px;
+    }
+    .btn-primary:hover { background: var(--charcoal); }
+    .btn-outline {
+      padding: 13px 35px;
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--black);
+      border-radius: 40px;
+    }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+    .btn-mint {
+      padding: 13px 35px;
+      background: transparent;
+      color: var(--mint);
+      border: 1px solid var(--mint);
+      border-radius: 40px;
+    }
+    .btn-mint:hover { background: var(--mint); color: var(--black); }
+    .btn-ghost {
+      padding: 13px 35px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--stone);
+      border-radius: 40px;
+    }
+    .btn-ghost:hover { border-color: var(--black); color: var(--black); }
+    .btn-text {
+      padding: 0;
+      background: transparent;
+      color: var(--black);
+      border: none;
+      border-bottom: 1px solid var(--black);
+      border-radius: 0;
+      padding-bottom: 2px;
+      letter-spacing: 0.14em;
+    }
+    .btn-text:hover { color: var(--mint); border-color: var(--mint); }
+
+    /* ── BEFORE/AFTER FULL ── */
+    .ba-section { background: var(--white); }
+    .ba-full {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--milk);
+      border-radius: 4px;
+      overflow: hidden;
+      height: 520px;
+    }
+    .ba-panel {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .ba-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .ba-panel-label {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .ba-panel.before .ba-panel-label {
+      background: rgba(255,255,255,0.9);
+      color: var(--text-muted);
+    }
+    .ba-panel.after .ba-panel-label {
+      background: var(--mint);
+      color: var(--black);
+    }
+    .ba-divider {
+      width: 1px;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+    }
+    .ba-note {
+      margin-top: 32px;
+      padding: 28px 32px;
+      background: var(--off-white);
+      border-radius: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .ba-note-accent {
+      width: 3px;
+      min-height: 60px;
+      background: var(--mint);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .ba-note-text {}
+    .ba-note-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .ba-note-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── MOOD WORDS ── */
+    .mood-section { background: var(--black); }
+    .mood-section .section-label { color: var(--mint); }
+    .mood-section .section-title { color: var(--white); }
+    .mood-section .section-desc { color: rgba(255,255,255,0.4); }
+    .mood-section .divider { background: var(--mint); }
+    .mood-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .mood-word {
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+      transition: all 0.25s;
+      cursor: default;
+    }
+    .mood-word:hover {
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+    .mood-word.accent {
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--off-white);
+      padding: 48px 56px;
+      border-top: 1px solid var(--milk);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+    .footer-note {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+    .footer-mint {
+      font-size: 11px;
+      color: var(--mint);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--mint); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">ПОСЛЕ</span>
+  <ul class="nav-links">
+    <li><a href="#palette">Палитра</a></li>
+    <li><a href="#typography">Типографика</a></li>
+    <li><a href="#photo">Фото-стиль</a></li>
+    <li><a href="#textures">Текстуры</a></li>
+    <li><a href="#ui">UI-блоки</a></li>
+    <li><a href="#ba">До / После</a></li>
+    <li><a href="#mood">Настроение</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Мудборд · Визуальная концепция</div>
+    <div class="hero-title">ПОСЛЕ</div>
+    <div class="hero-subtitle">Селективный груминг-сервис. Не для всех — для тех, кто ценит результат, вкус и атмосферу. Акцент не на процессе, а на красивом финальном состоянии.</div>
+    <div class="hero-meta">
+      <span>Вокзальная магистраль, 16</span>
+      <span>+7 913 018-72-19</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="img_hero_dog.jpg" alt="Hero" />
+  </div>
+</div>
+
+<!-- PALETTE -->
+<section id="palette" class="palette-section">
+  <div class="section-label">01 — Цветовая система</div>
+  <div class="section-title">Палитра</div>
+  <div class="section-desc">Белый как основа чистоты и пространства. Чёрный — глубина, характер, собранность. Нежно-зелёный и мятный — мягкость, свежесть, живой акцент. Все оттенки приглушены и визуально дорогие.</div>
+  <div class="divider"></div>
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color has-border" style="background:#FFFFFF;"></div>
+      <div class="swatch-role">Основной фон</div>
+      <div class="swatch-name">Белый</div>
+      <div class="swatch-hex">#FFFFFF</div>
+      <div class="swatch-desc">Чистота, воздух, пространство. Главный фон всего сайта.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color has-border" style="background:#F7F5F2;"></div>
+      <div class="swatch-role">Вторичный фон</div>
+      <div class="swatch-name">Молочный</div>
+      <div class="swatch-hex">#F7F5F2</div>
+      <div class="swatch-desc">Тёплый белый для секций с воздухом и уютом.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color has-border" style="background:#F0EDE8;"></div>
+      <div class="swatch-role">Третичный фон</div>
+      <div class="swatch-name">Кремовый</div>
+      <div class="swatch-hex">#F0EDE8</div>
+      <div class="swatch-desc">Мягкий каменный оттенок для карточек и разделителей.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0E0E0E;"></div>
+      <div class="swatch-role">Основной акцент</div>
+      <div class="swatch-name">Чёрный</div>
+      <div class="swatch-hex">#0E0E0E</div>
+      <div class="swatch-desc">Глубина, характер, статус. Заголовки и тёмные секции.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#A8C5B5;"></div>
+      <div class="swatch-role">Цветовой акцент</div>
+      <div class="swatch-name">Мятный</div>
+      <div class="swatch-hex">#A8C5B5</div>
+      <div class="swatch-desc">Свежесть, мягкость, живой акцент. Кнопки, иконки, метки.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#C8DDD4;"></div>
+      <div class="swatch-role">Светлый акцент</div>
+      <div class="swatch-name">Нежно-зелёный</div>
+      <div class="swatch-hex">#C8DDD4</div>
+      <div class="swatch-desc">Деликатный оттенок для фонов акцентных блоков.</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color has-border" style="background:#E8F0EC;"></div>
+      <div class="swatch-role">Бледный акцент</div>
+      <div class="swatch-name">Мятно-белый</div>
+      <div class="swatch-hex">#E8F0EC</div>
+      <div class="swatch-desc">Едва заметный зелёный тон для блока «После».</div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="section-label">02 — Типографика</div>
+  <div class="section-title">Шрифтовая система</div>
+  <div class="section-desc">Cormorant Garamond для заголовков — элегантный, тонкий, с характером. Inter для текста — нейтральный, читаемый, современный. Вместе они создают ощущение дорогого спокойного сервиса.</div>
+  <div class="divider"></div>
+  <div class="type-grid">
+    <div class="type-block">
+      <div class="type-label">Заголовочный шрифт</div>
+      <div class="type-specimen-xl">ПОСЛЕ</div>
+      <div class="type-specimen-lg">Преображение начинается здесь</div>
+      <div class="type-specimen-italic">Красивый результат — наш язык</div>
+      <div class="type-info">
+        <div class="type-info-name">Cormorant Garamond</div>
+        <div class="type-info-desc">Классический гарнитурный шрифт с тонкими засечками. Light 300 для крупных заголовков, Regular 400 для подзаголовков, Italic для цитат и акцентов. Передаёт элегантность без пафоса.</div>
+      </div>
+    </div>
+    <div class="type-block">
+      <div class="type-label">Текстовый шрифт</div>
+      <div class="type-specimen-caption">Груминг-салон · Новосибирск</div>
+      <br/>
+      <div class="type-specimen-body">Мы работаем с теми, кто понимает разницу между просто стрижкой и настоящим уходом. Каждая процедура — это внимание к деталям, спокойная атмосфера и результат, который говорит сам за себя.</div>
+      <div class="type-specimen-caption">Записаться · +7 913 018-72-19</div>
+      <div class="type-info">
+        <div class="type-info-name">Inter</div>
+        <div class="type-info-desc">Современный гротеск с отличной читаемостью. Light 300 для основного текста, Regular 400 для подписей и навигации, Medium 500 для меток и кнопок. Нейтральный и чистый.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STYLE -->
+<section id="photo">
+  <div class="section-label">03 — Фото-стиль</div>
+  <div class="section-title">Визуальный язык</div>
+  <div class="section-desc">Чистые кадры без визуального шума. Мягкий рассеянный свет, нейтральные фоны, крупные планы деталей. Животные — спокойные, ухоженные, с характером. Руки мастера — аккуратные и уверенные.</div>
+  <div class="divider"></div>
+  <div class="photo-grid">
+    <div class="photo-item col-5 tall">
+      <img src="img_hero_dog.jpg" alt="Ухоженная собака" />
+      <div class="photo-caption">Портрет · Чистый фон</div>
+    </div>
+    <div class="photo-item col-4 tall">
+      <img src="img_cat.jpg" alt="Ухоженная кошка" />
+      <div class="photo-caption">Кошка · Минимализм</div>
+    </div>
+    <div class="photo-item col-3 tall">
+      <img src="img_fur_detail.jpg" alt="Шерсть крупным планом" />
+      <div class="photo-caption">Текстура шерсти</div>
+    </div>
+    <div class="photo-item col-7 wide">
+      <img src="img_before_after.jpg" alt="До и после" />
+      <div class="photo-caption">До / После · Трансформация</div>
+    </div>
+    <div class="photo-item col-5 wide">
+      <img src="img_interior.jpg" alt="Интерьер" />
+      <div class="photo-caption">Интерьер · Атмосфера</div>
+    </div>
+    <div class="photo-item col-3 square">
+      <img src="img_paws.jpg" alt="Лапы" />
+      <div class="photo-caption">Детали · Лапы</div>
+    </div>
+    <div class="photo-item col-4 square">
+      <img src="img_tools.jpg" alt="Инструменты" />
+      <div class="photo-caption">Инструменты · Мрамор</div>
+    </div>
+    <div class="photo-item col-5 square">
+      <img src="img_hands_scissors.jpg" alt="Руки мастера" />
+      <div class="photo-caption">Руки мастера · Работа</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEXTURES -->
+<section id="textures" class="texture-section">
+  <div class="section-label">04 — Текстуры и материалы</div>
+  <div class="section-title">Фактурный язык</div>
+  <div class="section-desc">Мрамор как акцентная текстура премиальности. Матовые поверхности, светлый камень, мягкий свет. Все материалы — дорогие на вид, приглушённые, визуально чистые.</div>
+  <div class="divider"></div>
+  <div class="texture-grid">
+    <div class="texture-item">
+      <img src="img_marble_texture.jpg" alt="Мрамор" />
+      <div class="texture-label">Мрамор</div>
+      <div class="texture-sublabel">Белый с мятными прожилками · Премиальность</div>
+    </div>
+    <div class="texture-item">
+      <img src="img_interior.jpg" alt="Матовые поверхности" />
+      <div class="texture-label">Матовые поверхности</div>
+      <div class="texture-sublabel">Штукатурка, камень · Спокойствие</div>
+    </div>
+    <div class="texture-item">
+      <img src="img_fur_detail.jpg" alt="Шерсть" />
+      <div class="texture-label">Мягкие фактуры</div>
+      <div class="texture-sublabel">Шерсть, ткань · Уют и деликатность</div>
+    </div>
+    <div class="texture-item">
+      <img src="img_tools.jpg" alt="Металл и мрамор" />
+      <div class="texture-label">Металл + мрамор</div>
+      <div class="texture-sublabel">Матовый чёрный металл · Точность</div>
+    </div>
+  </div>
+</section>
+
+<!-- UI BLOCKS -->
+<section id="ui" class="ui-section">
+  <div class="section-label">05 — UI-блоки сайта</div>
+  <div class="section-title">Визуальные блоки</div>
+  <div class="section-desc">Много воздуха, крупные чистые блоки, аккуратные кнопки, сдержанные карточки. Каждый блок — отдельный смысловой элемент с чёткой иерархией и дорогой подачей.</div>
+  <div class="divider"></div>
+  <div class="ui-grid">
+
+    <!-- HERO BLOCK -->
+    <div class="ui-block">
+      <div class="ui-block-header">
+        <span class="ui-block-title">Блок — Главный экран</span>
+        <span class="ui-block-tag">Hero</span>
+      </div>
+      <div class="ui-hero-preview">
+        <div class="ui-hero-nav">
+          <div class="ui-hero-logo">ПОСЛЕ</div>
+          <div class="ui-hero-nav-links">
+            <span>Услуги</span>
+            <span>О мастере</span>
+            <span>Запись</span>
+          </div>
+        </div>
+        <div>
+          <div class="ui-hero-heading">ПОСЛЕ</div>
+          <div class="ui-hero-sub">Селективный груминг · Новосибирск</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO AM I -->
+    <div class="ui-block">
+      <div class="ui-block-header">
+        <span class="ui-block-title">Блок — Кто я</span>
+        <span class="ui-block-tag">About</span>
+      </div>
+      <div class="ui-who-preview">
+        <div class="ui-who-grid">
+          <div class="ui-who-photo">
+            <img src="img_hands_scissors.jpg" alt="Мастер" />
+          </div>
+          <div class="ui-who-content">
+            <div class="ui-who-eyebrow">О мастере</div>
+            <div class="ui-who-name">Личный подход к каждому питомцу</div>
+            <div class="ui-who-text">Я работаю в камерном формате — без потока, без спешки. Каждый питомец получает полное внимание и заботу. Результат — это не просто стрижка, это ощущение ухоженности и красоты.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING -->
+    <div class="ui-block">
+      <div class="ui-block-header">
+        <span class="ui-block-title">Блок — Запись</span>
+        <span class="ui-block-tag">Booking</span>
+      </div>
+      <div class="ui-book-preview">
+        <div class="ui-book-eyebrow">Записаться</div>
+        <div class="ui-book-heading">Запишитесь<br/>на процедуру</div>
+        <div class="ui-book-sub">Вокзальная магистраль, 16 · +7 913 018-72-19</div>
+        <button class="ui-book-btn">Записаться</button>
+      </div>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="ui-block">
+      <div class="ui-block-header">
+        <span class="ui-block-title">Блок — Контакты</span>
+        <span class="ui-block-tag">Contacts</span>
+      </div>
+      <div class="ui-contacts-preview">
+        <div class="ui-contacts-eyebrow">Контакты</div>
+        <div class="ui-contacts-heading">Найти нас</div>
+        <div class="ui-contacts-list">
+          <div class="ui-contact-row">
+            <div class="ui-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="ui-contact-text">
+              <div class="ui-contact-label">Телефон</div>
+              <div class="ui-contact-value">+7 913 018-72-19</div>
+            </div>
+          </div>
+          <div class="ui-contact-row">
+            <div class="ui-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="ui-contact-text">
+              <div class="ui-contact-label">Адрес</div>
+              <div class="ui-contact-value">Вокзальная магистраль, 16</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="ui-socials">
+          <button class="ui-social-btn">
+            <svg viewBox="0 0 24 24"><path d="M21.5 2h-19A.5.5 0 002 2.5v19a.5.5 0 00.5.5H13v-8.5H10V10h3V7.5C13 5 14.5 3.5 17 3.5c1.1 0 2 .1 2.3.1V7h-1.6c-1.2 0-1.4.6-1.4 1.4V10h2.9l-.4 3H16V22h5.5a.5.5 0 00.5-.5v-19a.5.5 0 00-.5-.5z"/></svg>
+            Instagram
+          </button>
+          <button class="ui-social-btn">
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Telegram
+          </button>
+          <button class="ui-social-btn">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Яндекс
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUTTONS -->
+<section id="buttons" class="buttons-section">
+  <div class="section-label">06 — Кнопки и элементы UI</div>
+  <div class="section-title">Интерактивные элементы</div>
+  <div class="section-desc">Все кнопки — сдержанные, аккуратные, с достаточным воздухом. Hover-эффекты плавные и деликатные. Никакой агрессии, только уверенность.</div>
+  <div class="divider"></div>
+  <div class="buttons-grid">
+    <button class="btn btn-primary">Записаться</button>
+    <button class="btn btn-outline">Узнать больше</button>
+    <button class="btn btn-mint">Написать в Telegram</button>
+    <button class="btn btn-ghost">Смотреть работы</button>
+    <button class="btn btn-text">Перейти на сайт</button>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER FULL -->
+<section id="ba" class="ba-section">
+  <div class="section-label">07 — Ключевой блок</div>
+  <div class="section-title">До / После</div>
+  <div class="section-desc">Главный смысловой блок сайта — прямое воплощение названия ПОСЛЕ. Трансформация как главный аргумент. Чистый, честный, визуально сильный.</div>
+  <div class="divider"></div>
+  <div class="ba-full">
+    <div class="ba-panel before">
+      <img src="img_before_after.jpg" alt="До" style="object-position: left center;" />
+      <div class="ba-panel-label">До</div>
+    </div>
+    <div class="ba-divider"></div>
+    <div class="ba-panel after">
+      <img src="img_before_after.jpg" alt="После" style="object-position: right center;" />
+      <div class="ba-panel-label">После</div>
+    </div>
+  </div>
+  <div class="ba-note">
+    <div class="ba-note-accent"></div>
+    <div class="ba-note-text">
+      <div class="ba-note-title">Название ПОСЛЕ — это не просто слово</div>
+      <div class="ba-note-desc">Это обещание. Каждый клиент приходит за результатом — за ощущением преображения, чистоты и ухоженности. Блок до/после должен быть одним из первых, что видит посетитель сайта: честный, визуально сильный и эмоционально точный.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOOD WORDS -->
+<section id="mood" class="mood-section">
+  <div class="section-label">08 — Характер бренда</div>
+  <div class="section-title" style="color:var(--white);">Настроение</div>
+  <div class="section-desc" style="color:rgba(255,255,255,0.4);">Слова, которые должны ощущаться при контакте с брендом ПОСЛЕ. Не декларируются — чувствуются.</div>
+  <div class="divider"></div>
+  <div class="mood-words">
+    <span class="mood-word accent">Преображение</span>
+    <span class="mood-word accent">Результат</span>
+    <span class="mood-word">Чистота</span>
+    <span class="mood-word">Ухоженность</span>
+    <span class="mood-word accent">Спокойствие</span>
+    <span class="mood-word">Вкус</span>
+    <span class="mood-word">Деликатность</span>
+    <span class="mood-word accent">Аккуратность</span>
+    <span class="mood-word">Статус</span>
+    <span class="mood-word">Камерность</span>
+    <span class="mood-word accent">Эстетика</span>
+    <span class="mood-word">Редкость</span>
+    <span class="mood-word">Внимание</span>
+    <span class="mood-word">Уют</span>
+    <span class="mood-word accent">Качество</span>
+    <span class="mood-word">Характер</span>
+    <span class="mood-word">Воздух</span>
+    <span class="mood-word">Точность</span>
+    <span class="mood-word accent">Осознанность</span>
+    <span class="mood-word">Нежность</span>
+    <span class="mood-word">Порядок</span>
+    <span class="mood-word">Свежесть</span>
+    <span class="mood-word accent">Доверие</span>
+    <span class="mood-word">Минимализм</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ПОСЛЕ</div>
+  <div class="footer-note">Мудборд · Визуальная концепция сайта · 2026</div>
+  <div class="footer-mint">после · груминг-салон</div>
+</footer>
+
+</body>
+</html>
